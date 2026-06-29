@@ -1,5 +1,5 @@
 const githubDownload =
-'https://github.com/YOUR_USERNAME/YOUR_REPO/releases/latest';
+'https://github.com/Vantix-Development/VRRadio/releases/latest';
 
 const radioWebsite =
 'https://radio.vantixurbex.shop';

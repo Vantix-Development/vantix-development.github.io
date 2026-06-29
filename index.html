@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vantix Radio</title>
+
+    <title>Loading...</title>
+
+    <link id="favicon" rel="icon">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,19 +20,14 @@
             🔴 LIVE
         </div>
 
-        <h1>Vantix Radio</h1>
+        <img id="stationLogo" class="station-logo" alt="Station Logo">
 
-        <p class="subtitle">
-            The Official Radio Station of Andreas Initiative Roleplay
-        </p>
+        <h1 id="stationName"></h1>
 
-        <button id="playBtn" type="button">
-            ▶ Play Radio
-        </button>
+        <p id="stationSubtitle" class="subtitle"></p>
 
         <audio id="radioPlayer" preload="none">
-            <source src="http://51.255.235.165:2128/stream.mp3" type="audio/mpeg">
-            Your browser does not support HTML5 audio.
+            <source id="streamSource" src="" type="audio/mpeg">
         </audio>
 
         <div class="volume-section">
@@ -46,8 +44,8 @@
         </div>
 
         <a
+            id="discordButton"
             class="discord-btn"
-            href="https://discord.com/invite/YaaEnHTSvk"
             target="_blank"
             rel="noopener noreferrer"
         >
@@ -55,54 +53,13 @@
         </a>
 
         <div id="status" class="status">
-            Ready to Play
+            Click Anywhere to Start Listening
         </div>
 
     </main>
 
-    <script>
-        const player = document.getElementById('radioPlayer');
-        const playBtn = document.getElementById('playBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const status = document.getElementById('status');
-
-        player.volume = 1;
-
-        playBtn.addEventListener('click', async () => {
-            try {
-                if (player.paused) {
-                    await player.play();
-                    playBtn.textContent = '⏸ Pause Radio';
-                    status.textContent = 'Connected';
-                } else {
-                    player.pause();
-                    playBtn.textContent = '▶ Play Radio';
-                    status.textContent = 'Paused';
-                }
-            } catch (error) {
-                console.error(error);
-                status.textContent = 'Stream Unavailable';
-            }
-        });
-
-        volumeSlider.addEventListener('input', () => {
-            player.volume = volumeSlider.value;
-        });
-
-        player.addEventListener('error', () => {
-            status.textContent = 'Unable to Load Stream';
-        });
-
-        player.addEventListener('playing', () => {
-            status.textContent = 'Live';
-        });
-
-        player.addEventListener('pause', () => {
-            if (!player.ended) {
-                status.textContent = 'Paused';
-            }
-        });
-    </script>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

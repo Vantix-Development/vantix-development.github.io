@@ -45,43 +45,48 @@ box-shadow:0 0 40px rgba(37,99,235,.3);
 .live-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 
     padding: 10px 18px;
     border-radius: 999px;
 
-    background: rgba(220, 38, 38, 0.15);
-    border: 1px solid rgba(220, 38, 38, 0.4);
+    background: rgba(0,0,0,.2);
+    border: 1px solid rgba(255,255,255,.15);
 
     color: #fff;
     font-weight: 700;
-    font-size: 14px;
     letter-spacing: 1px;
 
-    backdrop-filter: blur(10px);
-
-    animation: float 3s ease-in-out infinite,
-               glow 2s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;
 }
 
-/* Floating effect */
+.live-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff2d2d;
+
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255,45,45,.8);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 12px rgba(255,45,45,0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255,45,45,0);
+    }
+}
+
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-4px);
-    }
-}
-
-/* Glowing effect */
-@keyframes glow {
-    0%, 100% {
-        box-shadow: 0 0 8px rgba(220, 38, 38, 0.4);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(220, 38, 38, 0.9);
-    }
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
 }
 
 h1{

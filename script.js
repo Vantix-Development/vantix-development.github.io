@@ -1,39 +1,65 @@
 const player = document.getElementById("radioPlayer");
-const playBtn = document.getElementById("playBtn");
 const volumeSlider = document.getElementById("volumeSlider");
+const statusText = document.getElementById("status");
 
-player.volume = 1;
+document.title = CONFIG.stationName;
 
-playBtn.addEventListener("click", async () => {
-    if (player.paused) {
-        try {
-            await player.play();
-            playBtn.textContent = "⏸ Pause Radio";
-        } catch (err) {
-            alert(
-                "Unable to play stream. Check that the stream is online and supports HTTPS."
-            );
-            console.error(err);
-        }
-    } else {
-        player.pause();
-        playBtn.textContent = "▶ Play Radio";
-    }
-});
+document.getElementById("stationName").textContent =
+    CONFIG.stationName;
+
+document.getElementById("stationSubtitle").textContent =
+    CONFIG.stationSubtitle;
+
+document.getElementById("stationLogo").src =
+    CONFIG.logo;
+
+document.getElementById("favicon").href =
+    CONFIG.favicon;
+
+document.getElementById("discordButton").href =
+    CONFIG.discordInvite;
+
+document.getElementById("streamSource").src =
+    CONFIG.streamUrl;
+
+player.load();
 
 volumeSlider.addEventListener("input", () => {
     player.volume = volumeSlider.value;
 });
 
+let started = false;
+
+async function startRadio() {
+    if (started) return;
+
+    started = true;
+
+    try {
+        await player.play();
+        statusText.textContent = "🔴 Live";
+    } catch (err) {
+        console.error(err);
+        statusText.textContent =
+            "Unable to connect to stream";
+    }
+}
+
+if (CONFIG.autoPlayOnInteraction) {
+    document.addEventListener(
+        "click",
+        startRadio,
+        { once: true }
+    );
+
+    document.addEventListener(
+        "touchstart",
+        startRadio,
+        { once: true }
+    );
+}
+
 player.addEventListener("error", () => {
-    alert("Radio stream is unavailable.");
-    playBtn.textContent = "▶ Play Radio";
-});
-
-player.addEventListener("pause", () => {
-    playBtn.textContent = "▶ Play Radio";
-});
-
-player.addEventListener("play", () => {
-    playBtn.textContent = "⏸ Pause Radio";
+    statusText.textContent =
+        "Stream Offline";
 });

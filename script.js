@@ -1,6 +1,13 @@
 const player = document.getElementById("radioPlayer");
 const volumeSlider = document.getElementById("volumeSlider");
+const volumeValue = document.getElementById("volumeValue");
 const statusText = document.getElementById("status");
+
+volumeSlider.addEventListener("input", () => {
+    player.volume = volumeSlider.value;
+    volumeValue.textContent =
+        Math.round(volumeSlider.value * 100) + "%";
+});
 
 document.title = CONFIG.stationName;
 

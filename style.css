@@ -112,12 +112,37 @@ body{
 }
 
 /* =========================
+   FIX PLAYER CLICK ISSUES
+========================= */
+
+.background,
+.background *{
+    pointer-events:none;
+}
+
+.background{
+    z-index:-1;
+}
+
+#particles{
+    pointer-events:none;
+}
+
+.grid-overlay{
+    pointer-events:none;
+}
+
+.gradient-orb{
+    pointer-events:none;
+}
+
+/* =========================
    PLAYER CARD
 ========================= */
 
 .player-card{
     position:relative;
-    z-index:10;
+    z-index:9999;
 
     width:500px;
     max-width:92%;
@@ -128,19 +153,22 @@ body{
     text-align:center;
 
     background:
-        rgba(15,23,42,.60);
+        rgba(15,23,42,.70);
 
     backdrop-filter:
         blur(25px);
 
+    -webkit-backdrop-filter:
+        blur(25px);
+
     border:
-        1px solid rgba(255,255,255,.08);
+        1px solid rgba(255,255,255,.10);
 
     border-radius:30px;
 
     box-shadow:
-        0 0 50px rgba(56,189,248,.15),
-        0 0 100px rgba(249,115,22,.08);
+        0 0 40px rgba(56,189,248,.15),
+        0 0 80px rgba(249,115,22,.10);
 
     animation:
         cardFloat 8s ease-in-out infinite;

@@ -37,19 +37,17 @@
 
 <body>
 
+    <!-- Animated Background -->
     <div class="background">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-</div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
 
+    <!-- Radio Player Card -->
     <div class="player-card">
 
-        <div class="live-badge">
-            <span class="live-dot"></span>
-            LIVE 24/7
-        </div>
-
+        <!-- Station Logo -->
         <img
             id="stationLogo"
             class="station-logo"
@@ -57,10 +55,18 @@
             alt="Vantix Radio Logo"
         >
 
+        <!-- Live Badge -->
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            LIVE 24/7
+        </div>
+
+        <!-- Station Name -->
         <h1 id="stationName">
             Vantix Radio
         </h1>
 
+        <!-- Subtitle -->
         <p
             id="stationSubtitle"
             class="subtitle"
@@ -78,6 +84,7 @@
             Your browser does not support HTML5 audio.
         </audio>
 
+        <!-- Status -->
         <div
             id="status"
             class="status"
@@ -85,6 +92,7 @@
             Ready to Play
         </div>
 
+        <!-- Volume Control -->
         <div class="volume-section">
 
             <label for="volumeSlider">
@@ -105,6 +113,7 @@
 
         </div>
 
+        <!-- Discord Button -->
         <a
             id="discordButton"
             class="discord-btn"
@@ -117,7 +126,10 @@
 
     </div>
 
-    <!-- Player Logic -->
+    <!-- Background Animation (optional) -->
+    <script src="background.js"></script>
+
+    <!-- Radio Player Logic -->
     <script src="player.js"></script>
 
 </body>

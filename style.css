@@ -265,13 +265,7 @@ h1{
 ========================= */
 
 audio{
-    position:relative;
-    z-index:10000;
-
-    width:100%;
-    margin:20px 0;
-
-    border-radius:12px;
+    display:none;
 }
 
 .status{

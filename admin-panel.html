@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vantix Radio Admin Panel</title>
 
+    <script
+        async
+        crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_cGxlYXNhbnQtbW9uaXRvci03My5jbGVyay5hY2NvdW50cy5kZXYk"
+        src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js">
+    </script>
+
     <style>
         body{
             font-family:Segoe UI,Arial,sans-serif;
@@ -19,6 +26,7 @@
             background:#1e293b;
             padding:30px;
             border-radius:15px;
+            display:none;
         }
 
         button{
@@ -45,20 +53,20 @@
             background:#dc2626;
             color:white;
         }
+
+        .loading{
+            text-align:center;
+            margin-top:100px;
+        }
     </style>
 </head>
 <body>
 
-<script>
-if (
-    sessionStorage.getItem("vantix_admin")
-    !== "true"
-){
-    location.href = "admin.html";
-}
-</script>
+<div class="loading" id="loading">
+    Verifying access...
+</div>
 
-<div class="card">
+<div class="card" id="adminPanel">
 
     <h1>Vantix Radio Admin</h1>
 
@@ -83,6 +91,43 @@ if (
 </div>
 
 <script>
+window.addEventListener("load", async () => {
+
+    await Clerk.load();
+
+    if (!Clerk.user) {
+        location.href = "login.html";
+        return;
+    }
+
+    const ALLOWED_USERS = [
+        "YOUR_DISCORD_USER_ID"
+    ];
+
+    const discordAccount =
+        Clerk.user.externalAccounts?.find(
+            account =>
+                account.provider === "oauth_discord"
+        );
+
+    const discordId =
+        discordAccount?.providerUserId;
+
+    if (!ALLOWED_USERS.includes(discordId)) {
+
+        alert("Access Denied");
+
+        await Clerk.signOut();
+
+        location.href = "login.html";
+
+        return;
+    }
+
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("adminPanel").style.display = "block";
+});
+
 function setMode(mode){
 
     localStorage.setItem(
@@ -95,12 +140,11 @@ function setMode(mode){
     );
 }
 
-function logout(){
-    sessionStorage.removeItem(
-        "vantix_admin"
-    );
+async function logout(){
 
-    location.href = "admin.html";
+    await Clerk.signOut();
+
+    location.href = "login.html";
 }
 </script>
 

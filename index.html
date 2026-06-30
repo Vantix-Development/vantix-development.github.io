@@ -167,36 +167,107 @@
     <script src="background.js"></script>
     <script src="player.js"></script>
 
-<!-- FastCast Request System -->
-<div class="request-section">
-    <h2>🎵 Request a Song</h2>
-    <p>Submit your favorite track and our DJs may play it live.</p>
+<!-- Song Request Section -->
+<section class="request-section">
+    <div class="request-card">
+        <h2>🎵 Request a Song</h2>
+        <p>
+            Request your favorite song and it may be played live on Vantix Radio.
+        </p>
 
-    <script src="https://eu8.fastcast4u.com/system/request.js"></script>
-</div>
+        <form class="cc_request_form" data-username="vantixradio">
+            <div data-type="result"></div>
+
+            <input
+                type="text"
+                name="request[artist]"
+                placeholder="Song Artist"
+                maxlength="127"
+            >
+
+            <input
+                type="text"
+                name="request[title]"
+                placeholder="Song Title"
+                maxlength="127"
+            >
+
+            <input
+                type="text"
+                name="request[dedication]"
+                placeholder="Dedicated To (Optional)"
+                maxlength="127"
+            >
+
+            <input
+                type="text"
+                name="request[sender]"
+                placeholder="Your Name"
+                maxlength="127"
+            >
+
+            <input
+                type="email"
+                name="request[email]"
+                placeholder="Your Email"
+                maxlength="127"
+            >
+
+            <input
+                type="button"
+                value="Submit Song Request"
+                data-type="submit"
+                class="request-btn"
+            >
+        </form>
+    </div>
+</section>
 
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-content">
+
         <div class="footer-logo">
             🎵 Vantix Radio
         </div>
 
         <div class="footer-links">
             <a href="/">Home</a>
-            <a href="/download.html">Downloads</a>
-            <a href="/discord/index.html" target="_blank">Discord</a>
+            <a href="/download">Downloads</a>
+            <a href="/discord" target="_blank">
+                Discord
+            </a>
         </div>
 
         <div class="footer-copy">
-            © <span id="year"></span> Vantix Radio • Streaming 24/7
+            © <span id="year"></span> Vantix Radio • Streaming 24/7 • Powered by Vantix Development
         </div>
+
     </div>
 </footer>
 
+<!-- FastCast Song Request System -->
+<script src="https://eu8.fastcast4u.com/system/request.js"></script>
+
+<!-- Footer Year -->
 <script>
-document.getElementById("year").textContent =
+document.getElementById('year').textContent =
     new Date().getFullYear();
+</script>
+
+<!-- Optional UI Effects -->
+<script>
+document.querySelectorAll('.cc_request_form input').forEach(input => {
+    input.addEventListener('focus', () => {
+        document.querySelector('.request-card').style.transform =
+            'translateY(-2px)';
+    });
+
+    input.addEventListener('blur', () => {
+        document.querySelector('.request-card').style.transform =
+            'translateY(0)';
+    });
+});
 </script>
 
 </body>

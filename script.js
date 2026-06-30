@@ -1,15 +1,9 @@
 const player = document.getElementById("radioPlayer");
-const volumeSlider = document.getElementById('volumeSlider');
-const volumeValue = document.getElementById('volumeValue');
-const audio = document.getElementById('audioPlayer'); // Your audio element ID
+const volumeSlider = document.getElementById("volumeSlider");
+const volumeValue = document.getElementById("volumeValue");
 const statusText = document.getElementById("status");
 
-volumeSlider.addEventListener("input", () => {
-    player.volume = volumeSlider.value;
-    volumeValue.textContent =
-        Math.round(volumeSlider.value * 100) + "%";
-});
-
+/* Station Config */
 document.title = CONFIG.stationName;
 
 document.getElementById("stationName").textContent =
@@ -27,15 +21,25 @@ document.getElementById("favicon").href =
 document.getElementById("discordButton").href =
     CONFIG.discordInvite;
 
-document.getElementById("streamSource").src =
-    CONFIG.streamUrl;
-
+/* Load Stream */
+player.src = CONFIG.streamUrl;
 player.load();
 
-volumeSlider.addEventListener("input", () => {
-    player.volume = volumeSlider.value;
-});
+/* Volume */
+player.volume = parseFloat(volumeSlider.value);
 
+function updateVolume() {
+    const volume = parseFloat(volumeSlider.value);
+
+    player.volume = volume;
+    volumeValue.textContent =
+        `${Math.round(volume * 100)}%`;
+}
+
+updateVolume();
+volumeSlider.addEventListener("input", updateVolume);
+
+/* Auto Start */
 let started = false;
 
 async function startRadio() {
@@ -44,8 +48,8 @@ async function startRadio() {
     started = true;
 
     try {
+        statusText.textContent = "Connecting...";
         await player.play();
-        statusText.textContent = "🔴 Live";
     } catch (err) {
         console.error(err);
         statusText.textContent =
@@ -67,23 +71,59 @@ if (CONFIG.autoPlayOnInteraction) {
     );
 }
 
-player.addEventListener("error", () => {
-    statusText.textContent =
-        "Stream Offline";
+/* Status Events */
+player.addEventListener("loadstart", () => {
+    statusText.textContent = "Connecting...";
 });
 
-function updateVolume() {
-    const volume = parseFloat(volumeSlider.value);
+player.addEventListener("playing", () => {
+    statusText.textContent = "🔴 Live";
+});
 
-    // Update audio volume
-    audio.volume = volume;
+player.addEventListener("waiting", () => {
+    statusText.textContent = "Buffering...";
+});
 
-    // Update displayed percentage
-    volumeValue.textContent = `${Math.round(volume * 100)}%`;
+player.addEventListener("stalled", () => {
+    statusText.textContent = "Reconnecting...";
+});
+
+player.addEventListener("suspend", () => {
+    statusText.textContent = "Loading Stream...";
+});
+
+player.addEventListener("pause", () => {
+    statusText.textContent = "Paused";
+});
+
+/* Auto Reconnect */
+function reconnectStream() {
+    statusText.textContent = "Reconnecting...";
+
+    const wasPlaying = !player.paused;
+
+    player.src =
+        CONFIG.streamUrl +
+        "?nocache=" +
+        Date.now();
+
+    player.load();
+
+    if (wasPlaying) {
+        player.play().catch(() => {});
+    }
 }
 
-// Set initial volume
-updateVolume();
+player.addEventListener("error", () => {
+    reconnectStream();
+});
 
-// Update while dragging
-volumeSlider.addEventListener('input', updateVolume);
+setInterval(() => {
+    if (
+        player.readyState === 0 ||
+        player.networkState ===
+            HTMLMediaElement.NETWORK_NO_SOURCE
+    ) {
+        reconnectStream();
+    }
+}, 10000);

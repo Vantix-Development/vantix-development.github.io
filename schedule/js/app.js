@@ -14,24 +14,14 @@ const scheduleData = [
 /* 🎙️ PRESENTERS */
 const presentersData = [
   {
-    name: "DJ Nova",
-    role: "Morning Host",
-    image: "https://i.imgur.com/1Q9Z1Zm.png"
+    name: "Vantix",
+    role: "CEO",
+    image: "https://cdn.discordapp.com/avatars/1078071377401221252/c18e95efc45aff8514d1b8f02211d313.png"
   },
   {
-    name: "DJ Vex",
-    role: "Afternoon Drive",
-    image: "https://i.imgur.com/2mXzY8A.png"
-  },
-  {
-    name: "Luna Wave",
-    role: "Chill / Night DJ",
-    image: "https://i.imgur.com/3xQZy7B.png"
-  },
-  {
-    name: "Axel R",
-    role: "Live Requests DJ",
-    image: "https://i.imgur.com/4kYzP9C.png"
+    name: "Laffy",
+    role: "COO",
+    image: "https://cdn.discordapp.com/avatars/1418823351312453652/e8317cb908c45a239b00546a3655e791.png"
   }
 ];
 

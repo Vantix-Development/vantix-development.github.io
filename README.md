@@ -6,17 +6,6 @@ A modern radio website built for **Vantix Radio**, the official radio station of
 
 ---
 
-## 🌐 Discord Embed Preview
-
-When shared on Discord, the website uses this banner for link previews:
-
-![Discord Embed Banner](https://radio.vantixurbex.shop/assets/banner1.png)
-
-**Recommended size:** 1200 × 630 px  
-Used for Open Graph / Discord / Twitter link previews
-
----
-
 ## ✨ Features
 
 * 🎵 Live radio streaming

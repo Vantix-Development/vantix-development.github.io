@@ -1,61 +1,45 @@
-const STORAGE_KEY = "vantix_online_users";
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-// give each browser a unique ID
-let userId = localStorage.getItem("user_id");
+const supabase = createClient(
+  "YOUR_SUPABASE_URL",
+  "YOUR_SUPABASE_ANON_KEY"
+);
+
+let userId = localStorage.getItem("uid");
 
 if (!userId) {
-    userId = crypto.randomUUID();
-    localStorage.setItem("user_id", userId);
+  userId = crypto.randomUUID();
+  localStorage.setItem("uid", userId);
 }
 
-// load current users object
-function getUsers() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+async function goOnline() {
+  await supabase.from("online_users").upsert({
+    id: userId,
+    last_seen: Date.now()
+  });
 }
 
-function saveUsers(users) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+async function updateCount() {
+  const { data } = await supabase
+    .from("online_users")
+    .select("id");
+
+  document.getElementById("listenerCount").textContent =
+    data?.length || 0;
 }
 
-// mark user as online with timestamp
-function setOnline() {
-    const users = getUsers();
-    users[userId] = Date.now();
-    saveUsers(users);
-}
+window.addEventListener("beforeunload", async () => {
+  await supabase.from("online_users").delete().eq("id", userId);
+});
 
-// clean users not active in last 30 seconds
-function cleanUsers() {
-    const users = getUsers();
-    const now = Date.now();
+async function start() {
+  await goOnline();
+  await updateCount();
 
-    for (const id in users) {
-        if (now - users[id] > 30000) {
-            delete users[id];
-        }
-    }
-
-    saveUsers(users);
-}
-
-// update UI
-function updateCount() {
-    cleanUsers();
-    const users = getUsers();
-
-    document.getElementById("listenerCount").textContent =
-        Object.keys(users).length;
-}
-
-// run loop
-function start() {
-    setOnline();
-    updateCount();
-
-    setInterval(() => {
-        setOnline();
-        updateCount();
-    }, 5000);
+  setInterval(async () => {
+    await goOnline();
+    await updateCount();
+  }, 5000);
 }
 
 start();

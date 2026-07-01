@@ -1,112 +1,64 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    min-height:100vh;
-
-    font-family:'Inter',sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #020617,
-            #0f172a,
-            #111827
-        );
-
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:30px;
-}
-
 .vr-request-wrapper{
     position:relative;
     width:100%;
-    max-width:950px;
+    display:flex;
+    justify-content:center;
+    padding:40px 20px;
 }
 
 .vr-request-bg{
     position:absolute;
     inset:0;
-
-    border-radius:32px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(56,189,248,.25),
-            rgba(249,115,22,.25)
-        );
-
-    filter:blur(40px);
-
-    animation:glow 8s ease-in-out infinite;
+    pointer-events:none;
 }
 
 .vr-request-card{
-    position:relative;
-    z-index:2;
+    width:100%;
+    max-width:700px;
 
-    padding:45px;
+    background:rgba(15,23,42,.85);
+    backdrop-filter:blur(15px);
 
-    border-radius:32px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(10,15,30,.95),
-            rgba(15,23,42,.98)
-        );
+    padding:35px;
 
-    border:1px solid rgba(255,255,255,.08);
+    color:white;
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.5);
+    box-shadow:0 0 40px rgba(37,99,235,.3);
 }
 
 .vr-request-header{
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .vr-request-badge{
     display:inline-block;
 
-    padding:8px 18px;
+    padding:8px 16px;
+
+    background:rgba(239,68,68,.15);
+    border:1px solid rgba(239,68,68,.4);
 
     border-radius:999px;
 
-    color:#38bdf8;
-
-    background:rgba(56,189,248,.12);
-
-    border:1px solid rgba(56,189,248,.25);
-
-    font-family:'Orbitron',sans-serif;
     font-size:.8rem;
     font-weight:700;
+    letter-spacing:1px;
 
-    letter-spacing:2px;
-
-    margin-bottom:18px;
+    margin-bottom:15px;
 }
 
-.vr-request-header h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:2.6rem;
-
-    margin-bottom:12px;
+.vr-request-header h2{
+    margin-bottom:10px;
+    font-size:2rem;
 }
 
 .vr-request-header p{
     color:#94a3b8;
+    line-height:1.6;
 }
 
 .cc_request_form{
@@ -119,105 +71,60 @@ body{
 .cc_request_form input[type="email"]{
     width:100%;
 
-    padding:16px;
+    padding:14px 16px;
 
-    border-radius:16px;
+    border:none;
+    outline:none;
 
-    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
 
-    background:rgba(255,255,255,.05);
-
+    background:rgba(255,255,255,.08);
     color:white;
 
     font-size:15px;
 }
 
-.cc_request_form input:focus{
-    outline:none;
-
-    border-color:#38bdf8;
-
-    box-shadow:
-        0 0 0 3px rgba(56,189,248,.15);
+.cc_request_form input::placeholder{
+    color:rgba(255,255,255,.6);
 }
 
 .vr-submit-btn{
+    margin-top:10px;
+
+    padding:15px;
+
     border:none;
+    border-radius:12px;
 
-    padding:18px;
+    background:#2563eb;
+    color:white;
 
-    border-radius:16px;
+    font-size:1rem;
+    font-weight:700;
 
     cursor:pointer;
 
-    color:white;
-
-    font-family:'Orbitron',sans-serif;
-    font-weight:700;
-
-    background:
-        linear-gradient(
-            135deg,
-            #38bdf8,
-            #0ea5e9,
-            #f97316
-        );
-
-    background-size:300% 300%;
-
-    animation:gradientMove 6s ease infinite;
+    transition:.2s ease;
 }
 
-.back-btn{
-    display:block;
-
-    width:max-content;
-
-    margin:25px auto 0;
-
-    text-decoration:none;
-
-    color:#94a3b8;
-}
-
-.back-btn:hover{
-    color:white;
+.vr-submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
 }
 
 [data-type="result"]{
+    margin-bottom:10px;
     text-align:center;
-    padding:12px;
+    font-weight:600;
 }
 
-@keyframes gradientMove{
-    0%{
-        background-position:0% 50%;
-    }
-    50%{
-        background-position:100% 50%;
-    }
-    100%{
-        background-position:0% 50%;
-    }
-}
-
-@keyframes glow{
-    0%,100%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.03);
-    }
-}
-
-@media(max-width:768px){
+@media (max-width:768px){
 
     .vr-request-card{
         padding:25px;
     }
 
-    .vr-request-header h1{
-        font-size:1.8rem;
+    .vr-request-header h2{
+        font-size:1.6rem;
     }
 }

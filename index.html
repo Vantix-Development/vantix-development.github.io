@@ -98,7 +98,7 @@ content="https://radio.vantixurbex.shop/assets/banner1.png">
 <script>
 async function updateListeners() {
     try {
-        const response = await fetch("http://51.255.235.165:2128/stats?json=1");
+        const response = await fetch("https://eu8.fastcast4u.com/proxy/vantixradio/stats?json=1");
         const data = await response.json();
 
         document.getElementById("listenerCount").textContent =

@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             await player.play();
 
-            savePlayState(true); // ADDED SAFE
+            savePlayState(true);
 
         } catch (err) {
 
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         player.pause();
 
-        savePlayState(false); // ADDED SAFE
+        savePlayState(false);
     }
 
     playBtn.addEventListener(
@@ -265,7 +265,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================
        🎧 NOW PLAYING (ADDED SAFE)
-       Centova Cast / fallback JSON
     ========================= */
 
     const NOW_PLAYING_URL =
@@ -283,14 +282,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (data && data.nowPlaying) {
 
-    status.textContent =
-        "🎧 Now Playing: " +
-        data.nowPlaying;
-}
+                status.textContent =
+                    "🎧 Live Radio Stream: " +
+                    data.nowPlaying;
+            }
 
         } catch (err) {
 
-            // silent fail (DO NOT BREAK STREAM)
+            // silent fail
         }
     }
 
@@ -301,4 +300,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateNowPlaying();
 
-}); 
+});

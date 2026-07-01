@@ -1,0 +1,206 @@
+/* =========================
+   BASE RESET + LAYOUT FIX
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: #fff;
+    background: #050816;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* IMPORTANT: gives spacing for fixed header */
+body {
+    padding-top: 120px;
+}
+
+/* =========================
+   BACKGROUND WRAPPER
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* =========================
+   GRADIENT BASE LAYER
+========================= */
+
+.background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        -45deg,
+        #0ea5e9,
+        #2563eb,
+        #7c3aed,
+        #f97316,
+        #dc2626
+    );
+
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease infinite;
+
+    opacity: 0.9;
+}
+
+/* =========================
+   ORBS (FLOATING LIGHTS)
+========================= */
+
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: #38bdf8;
+    top: -100px;
+    left: -100px;
+    animation: floatOne 20s ease-in-out infinite;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: #f97316;
+    bottom: -150px;
+    right: -120px;
+    animation: floatTwo 24s ease-in-out infinite;
+}
+
+.orb-3 {
+    width: 450px;
+    height: 450px;
+    background: #8b5cf6;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: floatThree 28s ease-in-out infinite;
+}
+
+/* =========================
+   GRID OVERLAY
+========================= */
+
+.background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+
+    background-size: 60px 60px;
+    opacity: 0.25;
+
+    animation: gridMove 25s linear infinite;
+}
+
+/* =========================
+   PARTICLES CANVAS
+========================= */
+
+#particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================
+   FIX CLICK BLOCKING ISSUES
+========================= */
+
+.background,
+.background * {
+    pointer-events: none;
+}
+
+/* =========================
+   Z-INDEX LAYERS FIX
+========================= */
+
+.site-header {
+    position: fixed;
+    z-index: 9999;
+}
+
+.player-card {
+    position: relative;
+    z-index: 5;
+}
+
+.vr-request-wrapper {
+    position: relative;
+    z-index: 5;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatOne {
+    0%,100% { transform: translate(0,0); }
+    50% { transform: translate(200px,150px); }
+}
+
+@keyframes floatTwo {
+    0%,100% { transform: translate(0,0); }
+    50% { transform: translate(-200px,-120px); }
+}
+
+@keyframes floatThree {
+    0%,100% { transform: translate(-50%, -50%); }
+    50% { transform: translate(-45%, -55%); }
+}
+
+@keyframes gridMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(60px); }
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+
+@media (max-width: 768px) {
+
+    .orb-1,
+    .orb-2,
+    .orb-3 {
+        filter: blur(90px);
+        opacity: 0.35;
+    }
+
+    body {
+        padding-top: 140px;
+    }
+}

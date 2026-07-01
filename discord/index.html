@@ -3,22 +3,130 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta http-equiv="refresh"
-          content="0; url=https://discord.com/invite/YaaEnHTSvk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Redirecting...</title>
+    <!-- Instant redirect -->
+    <meta http-equiv="refresh" content="3; url=https://discord.com/invite/YaaEnHTSvk">
+
+    <title>Redirecting to Discord | Vantix Radio</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI, Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            background:
+                radial-gradient(circle at top, #5865F2, #0f172a 60%);
+
+            color:white;
+            text-align:center;
+        }
+
+        .card{
+            width:min(500px, 90%);
+            padding:40px;
+
+            background:rgba(255,255,255,0.06);
+            border:1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter:blur(20px);
+
+            border-radius:20px;
+
+            box-shadow:0 0 60px rgba(88,101,242,0.25);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo{
+            width:70px;
+            height:70px;
+            margin-bottom:20px;
+        }
+
+        h1{
+            font-size:1.8rem;
+            margin-bottom:10px;
+        }
+
+        p{
+            color:#cbd5e1;
+            margin-bottom:20px;
+            line-height:1.5;
+        }
+
+        .discord{
+            display:inline-block;
+            padding:12px 18px;
+
+            background:#5865F2;
+            color:white;
+
+            border-radius:12px;
+            text-decoration:none;
+
+            font-weight:600;
+
+            transition:0.2s ease;
+        }
+
+        .discord:hover{
+            transform:translateY(-2px);
+            background:#4752c4;
+        }
+
+        .small{
+            margin-top:15px;
+            font-size:0.85rem;
+            color:#94a3b8;
+        }
+
+        @keyframes float{
+            0%,100%{ transform:translateY(0); }
+            50%{ transform:translateY(-6px); }
+        }
+    </style>
 
     <script>
         window.location.replace(
             "https://discord.com/invite/YaaEnHTSvk"
         );
     </script>
+
 </head>
+
 <body>
 
-<p>
-    Redirecting to Discord...
-</p>
+    <div class="card">
+
+        <img class="logo"
+             src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png"
+             alt="Discord Logo">
+
+        <h1>Joining Discord</h1>
+
+        <p>
+            You are being redirected to the <b>Vantix Radio Discord</b> community.
+        </p>
+
+        <a class="discord"
+           href="https://discord.com/invite/YaaEnHTSvk">
+           Open Discord Now
+        </a>
+
+        <div class="small">
+            If you are not redirected automatically, click the button above.
+        </div>
+
+    </div>
 
 </body>
 </html>

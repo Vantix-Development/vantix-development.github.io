@@ -5,29 +5,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", () => {
 
-        const data = new FormData(form);
+        // Delay ensures Centova already captured the request
+        setTimeout(() => {
 
-        const payload = {
-            artist: data.get("request[artist]"),
-            title: data.get("request[title]"),
-            sender: data.get("request[sender]")
-        };
+            const data = new FormData(form);
 
-        console.log("Song Request:", payload);
+            const payload = {
+                artist: data.get("request[artist]"),
+                title: data.get("request[title]"),
+                sender: data.get("request[sender]")
+            };
 
-        const webhook = "https://discord.com/api/webhooks/1521948838078976200/3yjzbQfZnE1NBzJnBKe9sM9oRXZwS8W6x-0lGtPvIlg1_JYQqDQIcJw2M-PMtCu72gYJ";
+            console.log("Song Request:", payload);
 
-        if (webhook) {
-            fetch(webhook, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    content: `🎵 **New Song Request**\n🎤 ${payload.artist}\n🎶 ${payload.title}\n👤 ${payload.sender}`
-                })
-            }).catch(() => {});
-        }
+             const webhook = "https://discord.com/api/webhooks/1521948838078976200/3yjzbQfZnE1NBzJnBKe9sM9oRXZwS8W6x-0lGtPvIlg1_JYQqDQIcJw2M-PMtCu72gYJ";
 
-        // DO NOT prevent default
-        // DO NOT call form.submit()
+            if (webhook) {
+                fetch(webhook, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        content:
+`🎵 New Song Request
+🎤 ${payload.artist}
+🎶 ${payload.title}
+👤 ${payload.sender}`
+                    })
+                }).catch(() => {});
+            }
+
+        }, 500);
     });
 });

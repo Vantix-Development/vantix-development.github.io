@@ -4,20 +4,17 @@
 
 .vr-request-wrapper{
     position:relative;
-
     width:100%;
-
     display:flex;
     justify-content:center;
-
     padding:40px 20px;
+    box-sizing:border-box;
 }
 
 /* background layer (safe, non-blocking) */
 .vr-request-bg{
     position:absolute;
     inset:0;
-
     pointer-events:none;
 }
 
@@ -41,6 +38,7 @@
     color:white;
 
     box-shadow:0 0 40px rgba(37,99,235,.25);
+    box-sizing:border-box;
 }
 
 /* ========================= HEADER ========================= */
@@ -65,6 +63,8 @@
     letter-spacing:1px;
 
     margin-bottom:15px;
+
+    transition:opacity .3s ease;
 }
 
 .vr-request-header h2{
@@ -83,6 +83,9 @@
     display:flex;
     flex-direction:column;
     gap:15px;
+
+    margin:0;
+    padding:0;
 }
 
 /* inputs */
@@ -103,6 +106,8 @@
     font-size:15px;
 
     transition:.2s ease;
+
+    box-sizing:border-box;
 }
 
 /* placeholder */
@@ -110,7 +115,7 @@
     color:rgba(255,255,255,.6);
 }
 
-/* focus state (added for UX, safe) */
+/* focus state */
 .cc_request_form input:focus{
     background:rgba(255,255,255,.12);
     box-shadow:0 0 0 2px rgba(37,99,235,.35);
@@ -149,6 +154,7 @@
     text-align:center;
     font-weight:600;
     color:#cbd5e1;
+    min-height:18px;
 }
 
 /* ========================= MOBILE ========================= */

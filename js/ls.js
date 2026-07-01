@@ -1,8 +1,8 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 const supabase = createClient(
-  "YOUR_SUPABASE_URL",
-  "YOUR_SUPABASE_ANON_KEY"
+  "https://roxffpgzusrbynuuehwd.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJveGZmcGd6dXNyYnludXVlaHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4OTMzMTYsImV4cCI6MjA5ODQ2OTMxNn0.hd1S7IO_BfeQH6fY5bBRrxBQODVETu0FlqwDaVBAwQg"
 );
 
 let userId = localStorage.getItem("uid");

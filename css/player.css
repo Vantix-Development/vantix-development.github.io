@@ -102,13 +102,17 @@ body{
 
 /* ========================= LIVE STATUS ========================= */
 
+/* LIVE BADGE (fixed placement) */
 .live-badge{
+    position:absolute;
+    top:18px;
+    right:18px;
+
     display:inline-flex;
     align-items:center;
     gap:8px;
 
     padding:6px 10px;
-    margin-top:10px;
 
     border-radius:999px;
 
@@ -117,11 +121,18 @@ body{
     letter-spacing:1.3px;
 
     color:#fff;
+
     background:linear-gradient(135deg,#0ea5e9,#2563eb);
 
     box-shadow:0 0 18px rgba(14,165,233,.35);
+
+    z-index:10;
+
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.12);
 }
 
+/* LIVE DOT */
 .live-dot{
     width:8px;
     height:8px;
@@ -129,13 +140,23 @@ body{
 
     background:#22c55e;
 
-    box-shadow:0 0 10px rgba(34,197,94,.8);
-    animation:pulse 1.5s infinite ease-in-out;
+    box-shadow:
+        0 0 10px rgba(34,197,94,.8),
+        0 0 20px rgba(34,197,94,.4);
+
+    animation:livePulse 1.4s infinite ease-in-out;
 }
 
-@keyframes pulse{
-    0%,100%{ transform:scale(1); opacity:.7; }
-    50%{ transform:scale(1.4); opacity:1; }
+/* FIXED ANIMATION NAME (avoids conflicts) */
+@keyframes livePulse{
+    0%,100%{
+        transform:scale(1);
+        opacity:.7;
+    }
+    50%{
+        transform:scale(1.5);
+        opacity:1;
+    }
 }
 
 /* ========================= TITLE ========================= */

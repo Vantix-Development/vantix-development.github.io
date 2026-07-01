@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!form) return;
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    form.addEventListener("submit", () => {
 
         const data = new FormData(form);
 
@@ -16,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("Song Request:", payload);
 
-        // OPTIONAL webhook (replace URL)
         const webhook = "https://discord.com/api/webhooks/1521948838078976200/3yjzbQfZnE1NBzJnBKe9sM9oRXZwS8W6x-0lGtPvIlg1_JYQqDQIcJw2M-PMtCu72gYJ";
 
         if (webhook) {
@@ -29,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }).catch(() => {});
         }
 
-        form.submit(); // send to Centova
+        // DO NOT prevent default
+        // DO NOT call form.submit()
     });
 });

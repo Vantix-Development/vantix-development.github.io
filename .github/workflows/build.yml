@@ -1,0 +1,20 @@
+name: Build Stream Config
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate config.js
+        run: |
+          echo "const STREAM_URL = '${{ secrets.STREAM_URL }}';" > js/config.js
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: .

@@ -11,13 +11,13 @@
 @import url('https://elisniper.github.io/Glass-Wave/release/import.css');
 
 :root {
-  --var-background: url('https://github.com/Vantix-Development/vantix-development.github.io/blob/main/assets/Screenshot_1574.png.64de838f6d5965875594b1fd564f0e9e.png?raw=true');
+  --var-background: url('https://i.imgur.com/N163LVg.png');
   --var-background-size: cover;
   --var-background-position: center;
-  --var-accent: #B007CD;
-  --var-popout-color: rgb(149,33,169);
-  --var-chat-bubbles-background: #741B83;
-  --var-chat-mentioned: #560C63;
+  --var-accent: #A225B7;
+  --var-popout-color: rgba(10, 21, 21, 1);
+  --var-chat-bubbles-background: #650475;
+  --var-chat-mentioned: #AC10C7;
   --var-font: gg sans;
 }
 

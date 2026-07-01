@@ -5,8 +5,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Instant redirect -->
-    <meta http-equiv="refresh" content="3; url=https://discord.com/invite/YaaEnHTSvk">
+    <!-- Redirect delay (optional fallback safe) -->
+    <meta http-equiv="refresh" content="12; url=https://discord.com/invite/YaaEnHTSvk">
 
     <title>Redirecting to Discord | Vantix Radio</title>
 
@@ -32,7 +32,7 @@
         }
 
         .card{
-            width:min(500px, 90%);
+            width:min(520px, 92%);
             padding:40px;
 
             background:rgba(255,255,255,0.06);
@@ -43,13 +43,18 @@
             border-radius:20px;
 
             box-shadow:0 0 60px rgba(88,101,242,0.25);
+
             animation: float 3s ease-in-out infinite;
         }
 
+        /* 🎧 DISCORD LOGO PULSE */
         .logo{
-            width:70px;
-            height:70px;
+            width:80px;
+            height:80px;
             margin-bottom:20px;
+
+            animation: pulse 1.8s infinite;
+            filter: drop-shadow(0 0 15px rgba(88,101,242,0.8));
         }
 
         h1{
@@ -59,13 +64,14 @@
 
         p{
             color:#cbd5e1;
-            margin-bottom:20px;
+            margin-bottom:25px;
             line-height:1.5;
         }
 
+        /* 🟣 GLowing JOIN BUTTON */
         .discord{
             display:inline-block;
-            padding:12px 18px;
+            padding:14px 20px;
 
             background:#5865F2;
             color:white;
@@ -73,14 +79,18 @@
             border-radius:12px;
             text-decoration:none;
 
-            font-weight:600;
+            font-weight:700;
 
             transition:0.2s ease;
+
+            box-shadow:0 0 0 rgba(88,101,242,0.0);
+            animation: glow 2.5s infinite;
         }
 
         .discord:hover{
-            transform:translateY(-2px);
+            transform:translateY(-3px);
             background:#4752c4;
+            box-shadow:0 0 25px rgba(88,101,242,0.6);
         }
 
         .small{
@@ -89,10 +99,38 @@
             color:#94a3b8;
         }
 
+        /* FLOAT ANIMATION */
         @keyframes float{
             0%,100%{ transform:translateY(0); }
             50%{ transform:translateY(-6px); }
         }
+
+        /* 🎧 PULSE */
+        @keyframes pulse{
+            0%{
+                transform:scale(1);
+            }
+            50%{
+                transform:scale(1.08);
+            }
+            100%{
+                transform:scale(1);
+            }
+        }
+
+        /* 🟣 GLOW EFFECT */
+        @keyframes glow{
+            0%{
+                box-shadow:0 0 5px rgba(88,101,242,0.3);
+            }
+            50%{
+                box-shadow:0 0 25px rgba(88,101,242,0.7);
+            }
+            100%{
+                box-shadow:0 0 5px rgba(88,101,242,0.3);
+            }
+        }
+
     </style>
 
     <script>
@@ -107,6 +145,7 @@
 
     <div class="card">
 
+        <!-- 🎧 Animated Discord logo -->
         <img class="logo"
              src="https://radio.vantixurbex.shop/assets/discord.png"
              alt="Discord Logo">
@@ -117,9 +156,10 @@
             You are being redirected to the <b>Vantix Radio Discord</b> community.
         </p>
 
+        <!-- 🟣 glowing button -->
         <a class="discord"
            href="https://discord.com/invite/YaaEnHTSvk">
-           Open Discord Now
+           🟣 Join Community
         </a>
 
         <div class="small">

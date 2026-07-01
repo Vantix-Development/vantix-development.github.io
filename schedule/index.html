@@ -6,12 +6,21 @@
 <title>Vantix Radio</title>
 
 <link rel="stylesheet" href="css/app.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header>
-  <h1>Vantix Radio</h1>
+  <div class="brand">
+    <div class="logo"></div>
+    <div>
+      <h1>Vantix Radio</h1>
+      <p>Live • Music • Requests • 24/7</p>
+    </div>
+  </div>
 </header>
 
 <div class="tabs">
@@ -19,8 +28,10 @@
   <button class="tab-btn" data-tab="presenters">Presenters</button>
 </div>
 
-<div id="schedule" class="section active"></div>
-<div id="presenters" class="section"></div>
+<div class="container">
+  <div id="schedule" class="section active"></div>
+  <div id="presenters" class="section"></div>
+</div>
 
 <script src="js/app.js"></script>
 </body>

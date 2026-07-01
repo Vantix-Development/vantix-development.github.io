@@ -154,19 +154,23 @@ fetch("./status.json")
         </div>
 
         <!-- CENTOVA COMPATIBLE FORM -->
-        <form class="cc_request_form" data-username="vantixradio" method="post">
+<!-- CENTOVA COMPATIBLE FORM -->
+<form class="cc_request_form" data-username="vantixradio" method="post">
 
-            <div data-type="result"></div>
+    <div data-type="result"></div>
 
-            <input type="text" name="request[artist]" placeholder="🎤 Artist Name" maxlength="127" required>
-            <input type="text" name="request[title]" placeholder="🎵 Song Title" maxlength="127" required>
-            <input type="text" name="request[dedication]" placeholder="💙 Dedicated To" maxlength="127">
-            <input type="text" name="request[sender]" placeholder="👤 Your Name" maxlength="127" required>
-            <input type="email" name="request[email]" placeholder="📧 Your Email" maxlength="127" required>
+    <input type="text" name="request[artist]" placeholder="🎤 Artist Name" maxlength="127" required>
+    <input type="text" name="request[title]" placeholder="🎵 Song Title" maxlength="127" required>
+    <input type="text" name="request[dedication]" placeholder="💙 Dedicated To" maxlength="127">
+    <input type="text" name="request[sender]" placeholder="👤 Your Name" maxlength="127" required>
+    <input type="email" name="request[email]" placeholder="📧 Your Email" maxlength="127" required>
 
-            <input type="submit" value="Submit Song Request" class="vr-submit-btn">
+    <!-- IMPORTANT FIX: button instead of input submit -->
+    <button type="submit" class="vr-submit-btn">
+        Submit Song Request
+    </button>
 
-        </form>
+</form>
 
     </div>
 

@@ -106,121 +106,121 @@ if ("serviceWorker" in navigator) {
 
 </header>
 
-<!-- ✅ FIX: WRAPPER ADDED (THIS FIXES YOUR “NOT FULLY LOADING” ISSUE) -->
+<!-- MAIN WRAPPER -->
 <main class="page-content">
 
-<!-- LAYOUT WRAPPER (ADDED) -->
+<!-- LAYOUT WRAPPER -->
 <div class="layout">
 
-<!-- LEFT SIDE (UNCHANGED CONTENT) -->
-<div class="main-content">
+    <!-- LEFT SIDE -->
+    <div class="main-content">
 
-<!-- PLAYER -->
-<div class="player-card">
+        <!-- PLAYER -->
+        <div class="player-card">
 
-    <div class="player-top">
+            <div class="player-top">
 
-        <img
-            class="station-logo"
-            src="https://radio.vantixurbex.shop/assets/ChatGPT%20Image%20Jun%2029,%202026,%2012_47_34%20PM.png"
-            alt="Vantix Radio Logo"
-        >
+                <img
+                    class="station-logo"
+                    src="https://radio.vantixurbex.shop/assets/ChatGPT%20Image%20Jun%2029,%202026,%2012_47_34%20PM.png"
+                    alt="Vantix Radio Logo"
+                >
 
-        <div class="live-badge">
-            <span class="live-dot"></span>
-            <span id="liveStatus">LIVE 24/7</span>
+                <div class="live-badge">
+                    <span class="live-dot"></span>
+                    <span id="liveStatus">LIVE 24/7</span>
+                </div>
+
+            </div>
+
+            <div class="player-info">
+
+                <h1 id="stationName">Vantix Radio</h1>
+
+                <p class="subtitle">
+                    The Official Radio Station of Andreas Initiative Roleplay
+                </p>
+
+            </div>
+
+            <audio id="radioPlayer" preload="auto" crossorigin="anonymous"></audio>
+
+            <div class="player-controls">
+
+                <button id="playBtn" class="play-btn" type="button">
+                    ▶ <span id="playText">Play Radio</span>
+                </button>
+
+                <div id="status" class="status">
+                    <span class="status-dot"></span>
+                    <span id="statusText">Ready to Play</span>
+                </div>
+
+            </div>
+
+            <div class="volume-section">
+
+                <label>
+                    Volume <span id="volumeValue">100%</span>
+                </label>
+
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+
+            </div>
+
         </div>
 
+        <!-- REQUEST -->
+        <section class="vr-request-wrapper">
+
+            <div class="vr-request-card">
+
+                <div class="vr-request-header">
+
+                    <span class="vr-request-badge">LIVE REQUESTS</span>
+
+                    <h2>🎵 Song Request Center</h2>
+
+                    <p>Send a request directly to our Discord server.</p>
+
+                </div>
+
+                <form id="requestForm" class="vr-form">
+
+                    <input type="text" id="artist" placeholder="🎤 Artist Name" required>
+                    <input type="text" id="title" placeholder="🎵 Song Title" required>
+                    <input type="text" id="sender" placeholder="👤 Your Name" required>
+
+                    <button type="submit" class="vr-submit-btn">
+                        Send Request
+                    </button>
+
+                    <div id="result"></div>
+
+                </form>
+
+            </div>
+
+        </section>
+
     </div>
 
-    <div class="player-info">
+    <!-- RIGHT SIDE -->
+    <aside class="announcements">
 
-        <h1 id="stationName">Vantix Radio</h1>
-
-        <p class="subtitle">
-            The Official Radio Station of Andreas Initiative Roleplay
-        </p>
-
-    </div>
-
-    <audio id="radioPlayer" preload="auto" crossorigin="anonymous"></audio>
-
-    <div class="player-controls">
-
-        <button id="playBtn" class="play-btn" type="button">
-            ▶ <span id="playText">Play Radio</span>
-        </button>
-
-        <div id="status" class="status">
-            <span class="status-dot"></span>
-            <span id="statusText">Ready to Play</span>
+        <div class="announcements-header">
+            📢 Live Announcements
         </div>
 
-    </div>
+        <div id="announcementList">
+            <div class="announcement-item">
+                Loading announcements...
+            </div>
+        </div>
 
-    <div class="volume-section">
-
-        <label>
-            Volume <span id="volumeValue">100%</span>
-        </label>
-
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
-
-    </div>
+    </aside>
 
 </div>
-
-<!-- REQUEST -->
-<section class="vr-request-wrapper">
-
-    <div class="vr-request-card">
-
-        <div class="vr-request-header">
-
-            <span class="vr-request-badge">LIVE REQUESTS</span>
-
-            <h2>🎵 Song Request Center</h2>
-
-            <p>Send a request directly to our Discord server.</p>
-
-        </div>
-
-        <form id="requestForm" class="vr-form">
-
-            <input type="text" id="artist" placeholder="🎤 Artist Name" required>
-            <input type="text" id="title" placeholder="🎵 Song Title" required>
-            <input type="text" id="sender" placeholder="👤 Your Name" required>
-
-            <button type="submit" class="vr-submit-btn">
-                Send Request
-            </button>
-
-            <div id="result"></div>
-
-        </form>
-
-    </div>
-
-</section>
-
-</div> <!-- END LEFT SIDE -->
-
-<!-- 📢 ANNOUNCEMENTS (NEW RIGHT PANEL) -->
-<aside class="announcements">
-
-    <div class="announcements-header">
-        📢 Live Announcements
-    </div>
-
-    <div id="announcementList">
-        <div class="announcement-item">
-            Loading announcements...
-        </div>
-    </div>
-
-</aside>
-
-</div> <!-- END LAYOUT -->
 
 </main>
 

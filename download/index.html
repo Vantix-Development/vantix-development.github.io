@@ -1,139 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Vantix Radio | Download & Game Setup Hub</title>
+<title>Vantix Radio | Download & Game Setup Hub</title>
 
-    <link rel="stylesheet" href="css/downloads.css">
+<link rel="stylesheet" href="css/downloads.css">
+
+<style>
+/* =========================
+   PAGE LAYOUT FIX (NEW)
+========================= */
+
+body{
+    margin:0;
+    font-family:Segoe UI, Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+.container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px 20px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+    align-items:start;
+}
+
+/* CARD FIX */
+.card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:16px;
+    padding:20px;
+
+    backdrop-filter:blur(12px);
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.25);
+}
+
+/* ICON */
+.icon{
+    font-size:28px;
+}
+
+/* TITLE */
+h1{
+    font-size:1.3rem;
+    margin:0;
+}
+
+/* DESCRIPTION */
+.description{
+    color:#cbd5e1;
+    font-size:.95rem;
+    margin:0;
+}
+
+/* FEATURES */
+.features{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    font-size:.9rem;
+    color:#e2e8f0;
+}
+
+/* STATS */
+.stats{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:.85rem;
+    color:#94a3b8;
+}
+
+/* CODE BOX */
+code{
+    background:rgba(0,0,0,0.4);
+    padding:10px;
+    border-radius:10px;
+    font-size:.8rem;
+    overflow-x:auto;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
+button{
+    flex:1;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.download-btn{
+    background:#38bdf8;
+    color:#000;
+}
+
+.secondary-btn{
+    background:#5865f2;
+    color:white;
+}
+
+.download-btn:hover,
+.secondary-btn:hover{
+    transform:translateY(-2px);
+}
+</style>
+
 </head>
 
 <body>
 
-<div class="background"></div>
-<div class="particles"></div>
-
 <main class="container">
 
-    <!-- ================= DOWNLOAD CARD ================= -->
+    <!-- DOWNLOAD -->
     <div class="card">
-
         <div class="icon">📻</div>
-
         <h1>Vantix Radio</h1>
 
         <p class="description">
-            A lightweight standalone FiveM radio resource that allows
-            players to listen to your custom radio station directly
-            in-game.
+            FiveM radio resource for live streaming.
         </p>
 
         <div class="stats">
-
-            <div class="stat">
-                <span>Version</span>
-                <strong>v1.0.0</strong>
-            </div>
-
-            <div class="stat">
-                <span>Framework</span>
-                <strong>Standalone</strong>
-            </div>
-
-            <div class="stat">
-                <span>License</span>
-                <strong>Free</strong>
-            </div>
-
+            <span>v1.0</span>
+            <span>Standalone</span>
+            <span>Free</span>
         </div>
 
         <div class="features">
-
-            <div>🎵 Custom Stream Support</div>
-            <div>🔊 Volume Controls</div>
+            <div>🎵 Live Stream Support</div>
             <div>🚗 Vehicle Compatible</div>
-            <div>⚡ Optimized Performance</div>
-
+            <div>⚡ Lightweight</div>
         </div>
 
         <div class="buttons">
-
-            <button id="downloadBtn" class="download-btn">
-                Download From GitHub
-            </button>
-
-            <button id="radioBtn" class="secondary-btn">
-                Visit Radio
-            </button>
-
+            <button class="download-btn">Download</button>
+            <button class="secondary-btn">Radio</button>
         </div>
-
     </div>
 
-    <!-- ================= ETS2 ================= -->
+    <!-- ETS2 -->
     <div class="card">
-
         <div class="icon">🚛</div>
-        <h1>Euro Truck Simulator 2 Setup</h1>
-
-        <p class="description">
-            Add Vantix Radio to ETS2 Internet Radio.
-        </p>
+        <h1>ETS2 Setup</h1>
 
         <div class="features">
-            <div>📁 Documents\Euro Truck Simulator 2\live_streams.sii</div>
+            <div>Documents\Euro Truck Simulator 2\live_streams.sii</div>
         </div>
 
         <code>
-stream_data[0]: "https://eu8.fastcast4u.com/proxy/vantixradio/stream|Vantix Radio|Music / Live DJ|EN|128"
+stream_data[0]: "https://eu8.fastcast4u.com/proxy/vantixradio/stream|Vantix Radio|Live|EN|128"
         </code>
-
     </div>
 
-    <!-- ================= ATS ================= -->
+    <!-- ATS -->
     <div class="card">
-
         <div class="icon">🚛</div>
-        <h1>American Truck Simulator Setup</h1>
-
-        <p class="description">
-            Same setup as ETS2.
-        </p>
+        <h1>ATS Setup</h1>
 
         <div class="features">
-            <div>📁 Documents\American Truck Simulator\live_streams.sii</div>
+            <div>Documents\American Truck Simulator\live_streams.sii</div>
         </div>
 
         <code>
-stream_data[0]: "https://eu8.fastcast4u.com/proxy/vantixradio/stream|Vantix Radio|Music / Live DJ|EN|128"
+stream_data[0]: "https://eu8.fastcast4u.com/proxy/vantixradio/stream|Vantix Radio|Live|EN|128"
         </code>
-
     </div>
 
-    <!-- ================= FARMING SIM ================= -->
+    <!-- FARMING SIM -->
     <div class="card">
-
         <div class="icon">🚜</div>
-        <h1>Farming Simulator Setup</h1>
-
-        <p class="description">
-            Add Vantix Radio to Farming Simulator 2022 / 2025.
-        </p>
+        <h1>Farming Sim</h1>
 
         <div class="features">
-            <div>📁 Documents\My Games\FarmingSimulator\music\streamingInternetRadios.xml</div>
+            <div>streamingInternetRadios.xml</div>
         </div>
 
         <code>
 &lt;streamingInternetRadio href="https://eu8.fastcast4u.com/proxy/vantixradio/stream" /&gt;
         </code>
-
     </div>
 
 </main>
-
-<script src="js/downloads.js"></script>
 
 </body>
 </html>

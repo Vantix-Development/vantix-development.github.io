@@ -1,24 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Vantix Radio Admin Panel</title>
-
-<script
-    defer
-    crossorigin="anonymous"
-    src="https://pleasant-monitor-73.clerk.accounts.dev/npm/@clerk/ui@1/dist/ui.browser.js">
-</script>
-
-<script
-    defer
-    crossorigin="anonymous"
-    data-clerk-publishable-key="pk_test_cGxlYXNhbnQtbW9uaXRvci03My5jbGVyay5hY2NvdW50cy5kZXYk"
-    src="https://pleasant-monitor-73.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js">
-</script>
 
 <style>
 
@@ -32,20 +18,15 @@ body{
     min-height:100vh;
     font-family:'Segoe UI',sans-serif;
     color:white;
-    background:
-        linear-gradient(
-            135deg,
-            #0f172a,
-            #1e293b,
-            #0f172a
-        );
+    background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
 }
 
+/* BACKGROUND GLOW */
 .background{
     position:fixed;
     inset:0;
-    overflow:hidden;
     z-index:-1;
+    overflow:hidden;
 }
 
 .background::before,
@@ -153,29 +134,17 @@ button:hover{
 }
 
 .live{
-    background:linear-gradient(
-        135deg,
-        #16a34a,
-        #22c55e
-    );
+    background:linear-gradient(135deg,#16a34a,#22c55e);
     color:white;
 }
 
 .maintenance{
-    background:linear-gradient(
-        135deg,
-        #ea580c,
-        #fb923c
-    );
+    background:linear-gradient(135deg,#ea580c,#fb923c);
     color:white;
 }
 
 .logout{
-    background:linear-gradient(
-        135deg,
-        #dc2626,
-        #ef4444
-    );
+    background:linear-gradient(135deg,#dc2626,#ef4444);
     color:white;
 }
 
@@ -183,6 +152,7 @@ button:hover{
     text-align:center;
     margin-top:120px;
     font-size:1.2rem;
+    color:white;
 }
 
 .footer{
@@ -192,99 +162,83 @@ button:hover{
 }
 
 @keyframes pulse{
-    0%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.2);
-    }
-    100%{
-        transform:scale(1);
-    }
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
 }
 
 @keyframes float{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(100px);
-    }
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(100px);}
 }
 
 </style>
 
 </head>
+
 <body>
 
 <div class="background"></div>
 
 <div id="loading" class="loading">
-    Verifying Administrator Access...
+    Verifying Discord Access...
 </div>
 
-<div
-    class="container"
-    id="adminPanel"
-    style="display:none;"
->
+<div class="container" id="adminPanel" style="display:none;">
 
-```
-<div class="header">
-    <h1>🎙️ Vantix Radio</h1>
-    <p>Administration Dashboard</p>
-</div>
+    <div class="header">
+        <h1>🎙️ Vantix Radio</h1>
+        <p>Administration Dashboard</p>
+    </div>
 
-<div class="panel">
+    <div class="panel">
 
-    <div class="status-card">
-        <div class="status-indicator">
-            <span class="dot"></span>
-            <span class="mode">
-                Current Mode:
-                <span id="currentMode">LIVE</span>
-            </span>
+        <div class="status-card">
+            <div class="status-indicator">
+                <span class="dot"></span>
+                <span class="mode">
+                    Current Mode:
+                    <span id="currentMode">LIVE</span>
+                </span>
+            </div>
         </div>
+
+        <div class="controls">
+
+            <button class="live" onclick="setMode('live')">
+                🟢 Set Site Live
+            </button>
+
+            <button class="maintenance" onclick="setMode('maintenance')">
+                🟠 Enable Maintenance
+            </button>
+
+            <button class="logout" onclick="logout()">
+                🔴 Logout
+            </button>
+
+        </div>
+
+        <div class="footer">
+            Vantix Radio Administration Panel
+        </div>
+
     </div>
-
-    <div class="controls">
-
-        <button
-            class="live"
-            onclick="setMode('live')">
-            🟢 Set Site Live
-        </button>
-
-        <button
-            class="maintenance"
-            onclick="setMode('maintenance')">
-            🟠 Enable Maintenance
-        </button>
-
-        <button
-            class="logout"
-            onclick="logout()">
-            🔴 Logout
-        </button>
-
-    </div>
-
-    <div class="footer">
-        Vantix Radio Administration Panel
-    </div>
-
-</div>
-```
 
 </div>
 
 <script>
 
-window.addEventListener("load", async () => {
+/* =========================
+   AUTH CHECK (DISCORD OAUTH)
+========================= */
 
-    await window.Clerk.load();
+window.addEventListener("load", () => {
 
-    if (!window.Clerk.user) {
+    const user =
+        JSON.parse(localStorage.getItem("vantix_user"));
+
+    if (!user || !user.id) {
         location.href = "login.html";
         return;
     }
@@ -293,20 +247,11 @@ window.addEventListener("load", async () => {
         "YOUR_DISCORD_ID"
     ];
 
-    const discordAccount =
-        window.Clerk.user.externalAccounts?.find(
-            account =>
-                account.provider === "oauth_discord"
-        );
-
-    const discordId =
-        discordAccount?.providerUserId;
-
-    if (!ALLOWED_USERS.includes(discordId)) {
+    if (!ALLOWED_USERS.includes(user.id)) {
 
         alert("Access Denied");
 
-        await window.Clerk.signOut();
+        localStorage.removeItem("vantix_user");
 
         location.href = "login.html";
 
@@ -317,39 +262,36 @@ window.addEventListener("load", async () => {
     document.getElementById("adminPanel").style.display = "block";
 
     const mode =
-        localStorage.getItem(
-            "vantix_site_mode"
-        ) || "live";
+        localStorage.getItem("vantix_site_mode") || "live";
 
     updateModeDisplay(mode);
 });
 
-function updateModeDisplay(mode){
+/* =========================
+   UI MODE SYSTEM
+========================= */
 
-    document.getElementById(
-        "currentMode"
-    ).textContent =
+function updateModeDisplay(mode){
+    document.getElementById("currentMode").textContent =
         mode.toUpperCase();
 }
 
 function setMode(mode){
 
-    localStorage.setItem(
-        "vantix_site_mode",
-        mode
-    );
+    localStorage.setItem("vantix_site_mode", mode);
 
     updateModeDisplay(mode);
 
-    alert(
-        "Site mode changed to " +
-        mode.toUpperCase()
-    );
+    alert("Site mode changed to " + mode.toUpperCase());
 }
 
-async function logout(){
+/* =========================
+   LOGOUT
+========================= */
 
-    await window.Clerk.signOut();
+function logout(){
+
+    localStorage.removeItem("vantix_user");
 
     location.href = "login.html";
 }

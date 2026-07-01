@@ -12,15 +12,15 @@ html,
 body{
     width:100%;
     min-height:100vh;
-
+    height:100%;
+    margin:0;
+    display:flex;
+    flex-direction:column;
     font-family:'Segoe UI', Arial, sans-serif;
     color:#fff;
-
     overflow-x:hidden;
     position:relative;
-
     padding-top:120px;
-
     background:#0b1220;
 }
 
@@ -130,18 +130,25 @@ body{
 ========================= */
 
 .site-footer{
+    margin-top:auto;
+
+    width:100%;
+
+    box-sizing:border-box;
+
     text-align:center;
 
-    padding:18px;
-    margin-top:40px;
+    padding:18px 20px;
 
     color:rgba(255,255,255,.6);
     font-size:.85rem;
+    letter-spacing:.4px;
 
     border-top:1px solid rgba(255,255,255,.08);
 
     background:rgba(15,23,42,.4);
     backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 }
 
 /* =========================

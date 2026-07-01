@@ -6,10 +6,8 @@
 
 <title>Vantix Radio | Game Setup Hub</title>
 
-<!-- 🔷 FAVICON (from index style) -->
 <link rel="icon" type="image/png" href="https://i.ibb.co/G4YSyXFc/Chat-GPT-Image-Jun-29-2026-12-47-34-PM.png">
 
-<!-- 🔷 FONTS (same vibe as index) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,24 +15,27 @@
 <style>
 
 /* =========================
-   BASE (INDEX MATCH STYLE)
+   BASE
 ========================= */
 
 body{
     margin:0;
-    font-family:'Inter', 'Segoe UI', sans-serif;
+    font-family:'Inter', Arial, sans-serif;
     background:#0f172a;
     color:white;
+
+    overflow-x:hidden;
 }
 
-/* HEADER FEEL BACKGROUND */
+/* BACKGROUND */
 .background{
     position:fixed;
     inset:0;
+    z-index:-1;
+
     background:linear-gradient(-45deg,#0ea5e9,#2563eb,#7c3aed,#f97316,#dc2626);
     background-size:400% 400%;
     animation:gradient 15s ease infinite;
-    z-index:-1;
 }
 
 @keyframes gradient{
@@ -44,21 +45,41 @@ body{
 }
 
 /* =========================
-   CONTAINER
+   HEADER TEXT
+========================= */
+
+.top-title{
+    text-align:center;
+    padding:40px 20px 10px;
+}
+
+.top-title h2{
+    font-family:'Orbitron', sans-serif;
+    margin:0;
+    font-size:1.8rem;
+}
+
+.top-title p{
+    color:#cbd5e1;
+    margin-top:6px;
+}
+
+/* =========================
+   GRID
 ========================= */
 
 .container{
     max-width:1100px;
     margin:0 auto;
-    padding:60px 20px;
+    padding:30px 20px 60px;
 
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:18px;
 }
 
 /* =========================
-   CARD (GLASS STYLE LIKE INDEX)
+   CARD FIX
 ========================= */
 
 .card{
@@ -66,42 +87,40 @@ body{
     border:1px solid rgba(255,255,255,0.08);
     border-radius:18px;
 
-    padding:22px;
+    padding:20px;
 
     backdrop-filter:blur(20px);
 
     box-shadow:0 20px 60px rgba(0,0,0,0.4);
 
-    transition:.2s ease;
-}
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 
-.card:hover{
-    transform:translateY(-4px);
+    min-height:100%;
 }
 
 /* ICON */
 .icon{
-    font-size:32px;
-    margin-bottom:10px;
-    filter:drop-shadow(0 0 10px rgba(255,255,255,0.15));
+    font-size:30px;
 }
 
-/* TITLES */
+/* TITLE */
 h1{
     font-family:'Orbitron', sans-serif;
-    font-size:1.2rem;
-    margin:0 0 10px 0;
+    font-size:1.1rem;
+    margin:0;
 }
 
 /* DESCRIPTION */
 .description{
     color:#cbd5e1;
     font-size:.9rem;
+    margin:0;
 }
 
 /* FEATURES */
 .features{
-    margin-top:10px;
     display:flex;
     flex-direction:column;
     gap:6px;
@@ -113,14 +132,12 @@ h1{
 .stats{
     display:flex;
     justify-content:space-between;
-    margin-top:10px;
     font-size:.8rem;
     color:#94a3b8;
 }
 
-/* CODE */
+/* CODE BLOCK FIX */
 code{
-    margin-top:10px;
     display:block;
 
     background:rgba(0,0,0,0.35);
@@ -131,13 +148,15 @@ code{
     font-size:.8rem;
 
     overflow-x:auto;
+    white-space:pre-wrap;
+    word-break:break-word;
 }
 
 /* BUTTONS */
 .buttons{
+    margin-top:auto;
     display:flex;
     gap:10px;
-    margin-top:15px;
 }
 
 button{
@@ -165,23 +184,18 @@ button:hover{
 }
 
 /* =========================
-   SMALL HEADER TITLE AREA
+   MOBILE FIX
 ========================= */
 
-.top-title{
-    text-align:center;
-    padding-top:30px;
-}
+@media(max-width:768px){
 
-.top-title h2{
-    font-family:'Orbitron', sans-serif;
-    margin:0;
-    font-size:1.6rem;
-}
+    .top-title h2{
+        font-size:1.4rem;
+    }
 
-.top-title p{
-    color:#cbd5e1;
-    margin-top:5px;
+    .container{
+        grid-template-columns:1fr;
+    }
 }
 
 </style>
@@ -199,9 +213,7 @@ button:hover{
 
 <main class="container">
 
-    <!-- DOWNLOAD -->
     <div class="card">
-
         <div class="icon">📻</div>
         <h1>Vantix Radio</h1>
 
@@ -224,10 +236,8 @@ button:hover{
         <div class="buttons">
             <button class="download-btn">Download</button>
         </div>
-
     </div>
 
-    <!-- ETS2 -->
     <div class="card">
         <div class="icon">🚛</div>
         <h1>Euro Truck Simulator 2</h1>
@@ -241,7 +251,6 @@ stream_data[0]: "https://eu8.fastcast4u.com/proxy/vantixradio/stream|Vantix Radi
         </code>
     </div>
 
-    <!-- ATS -->
     <div class="card">
         <div class="icon">🚛</div>
         <h1>American Truck Simulator</h1>
@@ -255,7 +264,6 @@ stream_data[0]: "https://eu8.fastcast4u.com/proxy/vantixradio/stream|Vantix Radi
         </code>
     </div>
 
-    <!-- FARMING SIM -->
     <div class="card">
         <div class="icon">🚜</div>
         <h1>Farming Simulator</h1>

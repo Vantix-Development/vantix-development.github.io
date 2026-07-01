@@ -79,18 +79,76 @@ fetch("./status.json")
 
 </header>
 
-<!-- PLAYER --> 
+
+<!-- PLAYER -->
 <div class="player-card">
-   <img class="station-logo" src="https://radio.vantixurbex.shop/assets/ChatGPT%20Image%20Jun%2029,%202026,%2012_47_34%20PM.png" alt="Vantix Radio Logo" > 
-   <div class="live-badge"> <span class="live-dot"></span> LIVE 24/7 </div>
-   <h1>Vantix Radio</h1>
-   <p class="subtitle"> The Official Radio Station of Andreas Initiative Roleplay </p>
-   <div class="now-playing"> <span>🔴 Live Radio Stream</span> </div>
-   <div class="radio-controls"> <button id="playBtn" class="play-btn" type="button"> ▶ Play Radio </button> </div>
-   <audio id="radioPlayer" preload="auto" crossorigin="anonymous"></audio>
-   <div id="status" class="status"> Ready to Play </div>
-   <div class="volume-section"> <label> Volume <span id="volumeValue">100%</span> </label> <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" > </div>
+
+    <!-- LOGO -->
+    <img
+        class="station-logo"
+        src="https://radio.vantixurbex.shop/assets/ChatGPT%20Image%20Jun%2029,%202026,%2012_47_34%20PM.png"
+        alt="Vantix Radio Logo"
+    >
+
+    <!-- LIVE BADGE -->
+    <div class="live-badge">
+        <span class="live-dot"></span>
+        LIVE 24/7
+    </div>
+
+    <!-- TITLE -->
+    <h1>Vantix Radio</h1>
+
+    <p class="subtitle">
+        The Official Radio Station of Andreas Initiative Roleplay
+    </p>
+
+    <!-- NOW PLAYING -->
+    <div class="now-playing">
+        🔴 Live Radio Stream
+    </div>
+
+    <!-- PLAY BUTTON (JS HOOK: playBtn) -->
+    <div class="radio-controls">
+        <button id="playBtn" class="play-btn" type="button">
+            ▶ Play Radio
+        </button>
+    </div>
+
+    <!-- AUDIO ELEMENT (JS HOOK: radioPlayer) -->
+    <audio
+        id="radioPlayer"
+        preload="auto"
+        crossorigin="anonymous"
+    ></audio>
+
+    <!-- STATUS (JS HOOK: status) -->
+    <div id="status" class="status">
+        Ready to Play
+    </div>
+
+    <!-- VOLUME (JS HOOKS: volumeSlider + volumeValue) -->
+    <div class="volume-section">
+
+        <label>
+            Volume <span id="volumeValue">100%</span>
+        </label>
+
+        <input
+            type="range"
+            id="volumeSlider"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+        >
+
+    </div>
+
 </div>
+
+<!-- IMPORTANT: LOAD YOUR SCRIPT -->
+<script src="js/player.js"></script>
 
 <!-- REQUEST SECTION (DISCORD ONLY) -->
 <section class="vr-request-wrapper">

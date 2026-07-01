@@ -1,16 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".cc_request_form");
 
-    const badge = document.querySelector(".vr-request-badge");
-    if (!badge) return;
+    if (!form) return;
 
-    // smooth animation instead of stacking timers
-    badge.style.transition = "opacity 0.5s ease";
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    let visible = true;
+        const data = new FormData(form);
 
-    setInterval(() => {
-        visible = !visible;
-        badge.style.opacity = visible ? "1" : "0.6";
-    }, 2000);
+        const payload = {
+            artist: data.get("request[artist]"),
+            title: data.get("request[title]"),
+            sender: data.get("request[sender]")
+        };
 
+        console.log("Song Request:", payload);
+
+        // OPTIONAL webhook (replace URL)
+        const webhook = "https://discord.com/api/webhooks/1521948838078976200/3yjzbQfZnE1NBzJnBKe9sM9oRXZwS8W6x-0lGtPvIlg1_JYQqDQIcJw2M-PMtCu72gYJ";
+
+        if (webhook) {
+            fetch(webhook, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    content: `🎵 **New Song Request**\n🎤 ${payload.artist}\n🎶 ${payload.title}\n👤 ${payload.sender}`
+                })
+            }).catch(() => {});
+        }
+
+        form.submit(); // send to Centova
+    });
 });

@@ -80,54 +80,71 @@ fetch("./status.json")
 </header>
 
 
+
 <!-- PLAYER -->
 <div class="player-card">
 
-    <!-- LOGO -->
-    <img
-        class="station-logo"
-        src="https://radio.vantixurbex.shop/assets/ChatGPT%20Image%20Jun%2029,%202026,%2012_47_34%20PM.png"
-        alt="Vantix Radio Logo"
-    >
+    <!-- TOP SECTION -->
+    <div class="player-top">
 
-    <!-- LIVE BADGE -->
-    <div class="live-badge">
-        <span class="live-dot"></span>
-        LIVE 24/7
+        <!-- LOGO -->
+        <img
+            class="station-logo"
+            src="https://radio.vantixurbex.shop/assets/ChatGPT%20Image%20Jun%2029,%202026,%2012_47_34%20PM.png"
+            alt="Vantix Radio Logo"
+        >
+
+        <!-- LIVE BADGE -->
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            <span id="liveStatus">LIVE 24/7</span>
+        </div>
+
     </div>
 
-    <!-- TITLE -->
-    <h1>Vantix Radio</h1>
+    <!-- INFO SECTION -->
+    <div class="player-info">
 
-    <p class="subtitle">
-        The Official Radio Station of Andreas Initiative Roleplay
-    </p>
+        <!-- TITLE -->
+        <h1 id="stationName">Vantix Radio</h1>
 
-    <!-- NOW PLAYING -->
-    <div class="now-playing">
-        🔴 Live Radio Stream
+        <p class="subtitle">
+            The Official Radio Station of Andreas Initiative Roleplay
+        </p>
+
+        <!-- NOW PLAYING (READY FOR JS UPDATES) -->
+        <div class="now-playing">
+            🔴 <span id="nowPlayingText">Live Radio Stream</span>
+        </div>
+
     </div>
 
-    <!-- PLAY BUTTON (JS HOOK: playBtn) -->
-    <div class="radio-controls">
-        <button id="playBtn" class="play-btn" type="button">
-            ▶ Play Radio
-        </button>
-    </div>
-
-    <!-- AUDIO ELEMENT (JS HOOK: radioPlayer) -->
+    <!-- AUDIO ELEMENT (PLAYER.JS HOOK) -->
     <audio
         id="radioPlayer"
         preload="auto"
         crossorigin="anonymous"
     ></audio>
 
-    <!-- STATUS (JS HOOK: status) -->
-    <div id="status" class="status">
-        Ready to Play
+    <!-- CONTROLS -->
+    <div class="player-controls">
+
+        <!-- PLAY BUTTON -->
+        <div class="radio-controls">
+            <button id="playBtn" class="play-btn" type="button">
+                ▶ <span id="playText">Play Radio</span>
+            </button>
+        </div>
+
+        <!-- STATUS -->
+        <div id="status" class="status">
+            <span class="status-dot"></span>
+            <span id="statusText">Ready to Play</span>
+        </div>
+
     </div>
 
-    <!-- VOLUME (JS HOOKS: volumeSlider + volumeValue) -->
+    <!-- VOLUME -->
     <div class="volume-section">
 
         <label>
@@ -146,9 +163,6 @@ fetch("./status.json")
     </div>
 
 </div>
-
-<!-- IMPORTANT: LOAD YOUR SCRIPT -->
-<script src="js/player.js"></script>
 
 <!-- REQUEST SECTION (DISCORD ONLY) -->
 <section class="vr-request-wrapper">

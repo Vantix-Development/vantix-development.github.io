@@ -26,6 +26,26 @@ document.addEventListener("DOMContentLoaded", () => {
     player.preload = "auto";
 
     /* =========================
+       CROSS PAGE MEMORY (ADDED SAFE)
+    ========================= */
+
+    const WAS_PLAYING =
+        sessionStorage.getItem("vantix_playing") === "true";
+
+    if (WAS_PLAYING) {
+        setTimeout(() => {
+            player.play().catch(() => {});
+        }, 300);
+    }
+
+    function savePlayState(isPlaying) {
+        sessionStorage.setItem(
+            "vantix_playing",
+            isPlaying ? "true" : "false"
+        );
+    }
+
+    /* =========================
        VOLUME
     ========================= */
 
@@ -85,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             await player.play();
 
+            savePlayState(true); // ADDED SAFE
+
         } catch (err) {
 
             console.error(err);
@@ -97,6 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function stopRadio() {
 
         player.pause();
+
+        savePlayState(false); // ADDED SAFE
     }
 
     playBtn.addEventListener(
@@ -239,4 +263,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }, 15000);
 
-});
+    /* =========================
+       🎧 NOW PLAYING (ADDED SAFE)
+       Centova Cast / fallback JSON
+    ========================= */
+
+    const NOW_PLAYING_URL =
+        "/status.json";
+
+    async function updateNowPlaying() {
+
+        try {
+
+            const res =
+                await fetch(NOW_PLAYING_URL);
+
+            const data =
+                await res.json();
+
+            if (data && data.nowPlaying) {
+
+                status.textContent =
+                    "🎧 Now Playing: " +
+                    data.nowPlaying;
+            }
+
+        } catch (err) {
+
+            // silent fail (DO NOT BREAK STREAM)
+        }
+    }
+
+    setInterval(
+        updateNowPlaying,
+        15000
+    );
+
+    updateNowPlaying();
+
+}); 

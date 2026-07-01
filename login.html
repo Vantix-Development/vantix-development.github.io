@@ -1,146 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Vantix Radio Admin Login</title>
+<title>Vantix Radio Admin Login</title>
 
-    <link rel="icon"
-        href="https://i.ibb.co/G4YSyXFc/Chat-GPT-Image-Jun-29-2026-12-47-34-PM.png">
+<link rel="icon"
+    href="https://i.ibb.co/G4YSyXFc/Chat-GPT-Image-Jun-29-2026-12-47-34-PM.png">
 
-    <script
-        async
-        crossorigin="anonymous"
-        data-clerk-publishable-key="pk_test_cGxlYXNhbnQtbW9uaXRvci03My5jbGVyay5hY2NvdW50cy5kZXYk"
-        src="https://pleasant-monitor-73.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js">
-    </script>
+<script
+    async
+    crossorigin="anonymous"
+    data-clerk-publishable-key="pk_test_cGxlYXNhbnQtbW9uaXRvci03My5jbGVyay5hY2NvdW50cy5kZXYk"
+    src="https://pleasant-monitor-73.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js">
+</script>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body{
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-family:Segoe UI,Arial,sans-serif;
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Segoe UI, Arial, sans-serif;
 
-            background:
-                linear-gradient(
-                    -45deg,
-                    #0ea5e9,
-                    #2563eb,
-                    #7c3aed,
-                    #f97316,
-                    #dc2626
-                );
+    background:linear-gradient(-45deg,#0ea5e9,#2563eb,#7c3aed,#f97316,#dc2626);
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
+}
 
-            background-size:400% 400%;
-            animation:bgMove 15s ease infinite;
-        }
+.card{
+    width:420px;
+    max-width:90%;
 
-        .card{
-            width:420px;
-            max-width:90%;
+    background:rgba(15,23,42,.75);
+    backdrop-filter:blur(20px);
 
-            background:rgba(15,23,42,.75);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:24px;
 
-            backdrop-filter:blur(20px);
+    padding:35px;
+    text-align:center;
 
-            border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
 
-            border-radius:24px;
+.logo{
+    width:160px;
+    margin-bottom:15px;
+}
 
-            padding:35px;
+h1{
+    margin-bottom:10px;
+    color:white;
+}
 
-            text-align:center;
+p{
+    color:#cbd5e1;
+    margin-bottom:20px;
+}
 
-            box-shadow:
-                0 15px 40px rgba(0,0,0,.35);
-        }
+#sign-in{
+    min-height:350px;
+}
 
-        .logo{
-            width:180px;
-            margin-bottom:20px;
-        }
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+</style>
 
-        h1{
-            margin-bottom:10px;
-            color:white;
-        }
-
-        p{
-            color:#cbd5e1;
-            margin-bottom:25px;
-        }
-
-        #sign-in{
-            min-height:400px;
-        }
-
-        @keyframes bgMove{
-            0%{
-                background-position:0% 50%;
-            }
-
-            50%{
-                background-position:100% 50%;
-            }
-
-            100%{
-                background-position:0% 50%;
-            }
-        }
-    </style>
 </head>
+
 <body>
 
-    <div class="card">
+<div class="card">
 
-        <img
-            class="logo"
-            src="https://i.ibb.co/G4YSyXFc/Chat-GPT-Image-Jun-29-2026-12-47-34-PM.png"
-            alt="Vantix Radio">
+    <img class="logo"
+        src="https://i.ibb.co/G4YSyXFc/Chat-GPT-Image-Jun-29-2026-12-47-34-PM.png"
+        alt="Vantix Radio">
 
-        <h1>Admin Login</h1>
+    <h1>Admin Login</h1>
 
-        <p>
-            Sign in with your Discord account to access the admin panel.
-        </p>
+    <p>Sign in with your Discord account to access the admin panel.</p>
 
-        <div id="sign-in"></div>
+    <div id="sign-in"></div>
 
-    </div>
+</div>
 
 <script>
 window.addEventListener("load", async () => {
 
     await Clerk.load();
 
-    if (Clerk.user) {
+    const user = Clerk.user;
+
+    // If already logged in → redirect immediately
+    if (user) {
         window.location.href =
             "https://radio.vantixurbex.shop/admin-panel.html";
         return;
     }
 
+    // Mount sign-in properly
     Clerk.mountSignIn(document.getElementById("sign-in"), {
-
         appearance: {
             variables: {
                 colorPrimary: "#5865F2"
             }
-        },
-
-        signUpUrl: "/login.html",
-
-        forceRedirectUrl:
-            "https://radio.vantixurbex.shop/admin-panel.html"
+        }
     });
+
 });
 </script>
 

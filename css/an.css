@@ -1,13 +1,16 @@
-.layout{
-    display:flex;
-    gap:22px;
-    align-items:flex-start;
+.layout {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
 
-    width:min(1200px, 92%);
-    margin:0 auto;
+    width: min(1200px, 92%);
+    
+    /* push whole layout to the right */
+    margin-left: auto;
+    margin-right: 0;
 
-    position:relative;
-    z-index:10;
+    position: relative;
+    z-index: 10;
 }
 
 /* LEFT SIDE */

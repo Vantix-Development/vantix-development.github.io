@@ -5,34 +5,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const STATS_URL =
         "https://eu8.fastcast4u.com/proxy/vantixradio/stats?json=1";
 
-    async function updateListeners() {
+    let intervalStarted = false;
 
+    async function updateListeners() {
         try {
             const res = await fetch(STATS_URL, {
                 cache: "no-store"
             });
 
-            // ❗ handle bad responses like 404 properly
             if (!res.ok) {
                 throw new Error("HTTP Error: " + res.status);
             }
 
-            const data = await res.json().catch(() => ({}));
+            const data = await res.json();
 
-            const listeners =
-                Number(
-                    data?.currentlisteners ??
-                    data?.listeners ??
-                    data?.active_listeners ??
-                    0
-                );
+            const listenersRaw =
+                data?.currentlisteners ??
+                data?.listeners ??
+                data?.active_listeners;
+
+            const listeners = Number(listenersRaw);
 
             if (counter) {
-                counter.textContent = isNaN(listeners) ? 0 : listeners;
+                counter.textContent =
+                    Number.isFinite(listeners) ? listeners : 0;
             }
 
         } catch (err) {
-            // silent safe fallback (no console spam)
             if (counter) {
                 counter.textContent = "0";
             }
@@ -42,6 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // initial run
     updateListeners();
 
-    // interval loop
-    setInterval(updateListeners, 10000);
+    // prevent multiple intervals if script loads twice
+    if (!intervalStarted) {
+        intervalStarted = true;
+
+        setInterval(() => {
+            updateListeners();
+        }, 10000);
+    }
 });
